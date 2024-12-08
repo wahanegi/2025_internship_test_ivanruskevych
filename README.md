@@ -21,7 +21,7 @@ After completing this first phase of work, someone on the Cloverpop Engineering 
 
   * All work should be submitted in a separate branch and made into pull requests.
   * Starting out, use your best judgement as to how to segment the work into separate pull requests.
-  * Assign each pull request to youself and set the "Reviewers" to `Maryna-Harasko` and `rogergraves`.
+  * Assign each pull request to youself and set the "Reviewers" to: `Maryna-Harasko`, `rogergraves`, `LyubovP` and `SerhiiBorozenets`.
   * If we assign "Issues", please attach issues to the pull requests that address them.
   * Each pull request should list the amount of time you spent on it, e.g. `3.25 hours` for 3 hours and 15 minutes.
 
