@@ -20,6 +20,7 @@ jobs:
           bundler-cache: true
 
       - name: Ensure brakeman is executable
+
         run: bin/brakeman --no-pager
 
   lint:
@@ -33,6 +34,7 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+
       - name: Ensure rubocop is executable
         run: chmod +x bin/rubocop
 
