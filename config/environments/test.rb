@@ -50,4 +50,7 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions.
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # secret key
+  ENV['DEVISE_SECRET_KEY']="BEC7CCCC775EBC3EDF7FFF54EBB1C"
 end
