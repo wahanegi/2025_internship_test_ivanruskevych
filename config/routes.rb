@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get "homepage", to: "homepage#homepage"
 
   devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations'
+    sessions: "users/sessions",
+    registrations: "users/registrations"
   }
 
   # rout for letter_opener_web

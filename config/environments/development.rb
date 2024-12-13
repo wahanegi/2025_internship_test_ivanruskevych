@@ -74,5 +74,5 @@ Rails.application.configure do
   # config.generators.apply_rubocop_autocorrect_after_generate!
 
   # secret key
-  ENV['DEVISE_SECRET_KEY']="76B784E23367ADB51EACBC8FAC553"
+  ENV["DEVISE_SECRET_KEY"]="76B784E23367ADB51EACBC8FAC553"
 end
