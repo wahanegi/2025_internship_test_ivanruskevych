@@ -5,11 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
-  validate :password_validation
-
-  private
-  def password_validation
-    return if password.blank? || password.match?(/\d/)
-      errors.add :password, "must contain at least one digit."
-    end
+  validates :password_confirmation, presence: true
+  validates :email, presence: true, uniqueness: { case_sensitive: true }, format: { with: URI::MailTo::EMAIL_REGEXP, message: "must be a valid email format" }
   end
