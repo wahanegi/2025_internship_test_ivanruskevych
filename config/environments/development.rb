@@ -40,6 +40,9 @@ Rails.application.configure do
   # Set localhost to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
@@ -71,5 +74,5 @@ Rails.application.configure do
   # config.generators.apply_rubocop_autocorrect_after_generate!
 
   # secret key
-  ENV['DEVISE_SECRET_KEY']="76B784E23367ADB51EACBC8FAC553"
+  ENV["DEVISE_SECRET_KEY"]="76B784E23367ADB51EACBC8FAC553"
 end
