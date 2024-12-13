@@ -52,5 +52,5 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   # secret key
-  ENV['DEVISE_SECRET_KEY']="BEC7CCCC775EBC3EDF7FFF54EBB1C"
+  ENV["DEVISE_SECRET_KEY"]="BEC7CCCC775EBC3EDF7FFF54EBB1C"
 end
