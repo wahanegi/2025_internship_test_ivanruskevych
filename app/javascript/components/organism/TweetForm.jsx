@@ -1,23 +1,26 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { Button } from "../atoms";
+import {createTweet} from "../../services/tweetService";
 
-export const TweetForm = ({ onTweetSubmit }) => {
+export const TweetForm = ({addTweet}) => {
     const [tweetContent, setTweetContent] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const handleTweetSubmit = (event) => {
+    const handleTweetSubmit = async (event) => {
         event.preventDefault();
 
-        if (tweetContent.trim()) {
-            const newTweet = {
-                id: uuidv4(),
-                user: "username",
-                content: tweetContent,
-                likes: 0,
-            };
+        if (tweetContent.trim()){
+            setIsSubmitting(true);
 
-            onTweetSubmit(newTweet);
-            setTweetContent("");
+            try {
+               const newTweet = await createTweet(tweetContent);
+                addTweet(newTweet);
+                setTweetContent("");
+            } catch (err){
+                console.error("Error creating tweet:", err.response?.data || err.message)
+            } finally {
+                setIsSubmitting(false)
+            }
         }
     };
 
@@ -34,11 +37,12 @@ export const TweetForm = ({ onTweetSubmit }) => {
             placeholder="What is happening?!"
             value={tweetContent}
             onChange={handleOnChange}
+            disabled={isSubmitting}
         ></textarea>
             </div>
             <div className="d-flex justify-content-end">
-                <Button type={"submit"} className={"btn-primary"}>
-                    Tweet
+                <Button type={"submit"} className={"btn-primary"} disabled={isSubmitting}>
+                    {isSubmitting ? "Tweeting..." : "Tweet"}
                 </Button>
             </div>
         </form>

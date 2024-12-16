@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root "homepage#index"
 
-  get "homepage", to: "homepage#homepage"
+  namespace :api do
+    namespace :v1 do
+      resources :tweets, only: [ :index, :create, :show, :destroy ]
+    end
+  end
 
   devise_for :users, controllers: {
     sessions: "users/sessions",
