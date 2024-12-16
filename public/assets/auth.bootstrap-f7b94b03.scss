@@ -1,0 +1,27 @@
+body {
+  background-color: $bg-primary-color;
+}
+
+.navbar {
+  background-color: #ffffff;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  color: #1da1f2 !important;
+}
+
+.btn-primary {
+  background-color: #1da1f2;
+  border-color: #1da1f2;
+}
+
+.btn-outline-primary {
+  color: #1da1f2;
+  border-color: #1da1f2;
+}
+
+.btn-outline-primary:hover {
+  background-color: #1da1f2;
+  color: white;
+}
