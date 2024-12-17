@@ -1,27 +1,27 @@
 body {
-  background-color: #f5f8fa;
+  background-color: $bg-primary-color;
 }
 
 .navbar {
-  background-color: #ffffff;
+  background-color: $bg-navbar;
 }
 
 .navbar-brand {
   font-size: 1.5rem;
-  color: #1da1f2 !important;
+  color: $color-primary !important;
 }
 
 .btn-primary {
-  background-color: #1da1f2;
-  border-color: #1da1f2;
+  background-color: $color-primary;
+  border-color: $color-primary;
 }
 
 .btn-outline-primary {
-  color: #1da1f2;
-  border-color: #1da1f2;
+  color: $color-primary;
+  border-color: $color-primary;
 }
 
 .btn-outline-primary:hover {
-  background-color: #1da1f2;
-  color: white;
+  background-color: $color-primary;
+  color: $color-white;
 }
