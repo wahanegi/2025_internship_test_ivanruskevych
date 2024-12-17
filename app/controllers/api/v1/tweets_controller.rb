@@ -18,8 +18,11 @@ class Api::V1::TweetsController < ApplicationController
   end
 
   def destroy
-    @tweet&.destroy
+    if @tweet&.destroy
     render json: { message: "Tweet deleted!" }, status: :ok
+    else
+      render json: { error: "Failed to delete tweet" }, status: :unprocessable_entity
+    end
   end
 
   private
