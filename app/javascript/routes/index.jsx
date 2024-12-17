@@ -5,7 +5,7 @@ import {Home} from "../components/pages";
 export default (
     <Router>
         <Routes>
-            <Route path="/pages/users" element={<Home />} />
+            <Route path="/" element={<Home />} />
         </Routes>
     </Router>
 );
