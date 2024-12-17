@@ -7,8 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :confirmable
 
-  validates :password_confirmation, presence: true
-  validates :email, presence: true, uniqueness: { case_sensitive: true }, format: { with: URI::MailTo::EMAIL_REGEXP, message: "must be a valid email format" }
+  validates :password_confirmation, presence: { message: "Password confirmation is required" }
+  validates :email, presence: { message: "Email is required" }, uniqueness: { case_sensitive: true, message: "Email already in use" }, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Email must be in a valid format" }
   validate :password_rules, if: -> { password.present? }
 
   private

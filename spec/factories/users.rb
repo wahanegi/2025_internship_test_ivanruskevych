@@ -11,5 +11,7 @@ FactoryBot.define do
       ).gsub(/(.)\1\1/, 'A@b1!')
     end
     password_confirmation { password }
+
+    after(:build) { |user| user.skip_confirmation! }
   end
 end
