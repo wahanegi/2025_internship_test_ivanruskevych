@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button } from "../atoms";
 import {createTweet} from "../../services/tweetService";
+import {toast} from "react-toastify";
+import {apiErrorHandler} from "../../utils";
 
 export const TweetForm = ({addTweet}) => {
     const [tweetContent, setTweetContent] = useState("");
@@ -11,13 +13,13 @@ export const TweetForm = ({addTweet}) => {
 
         if (tweetContent.trim()){
             setIsSubmitting(true);
-
             try {
                const newTweet = await createTweet(tweetContent);
                 addTweet(newTweet);
                 setTweetContent("");
+                toast.success('Tweet created successfully', { position: "top-center" });
             } catch (err){
-                console.error("Error creating tweet:", err.response?.data || err.message)
+                apiErrorHandler(err);
             } finally {
                 setIsSubmitting(false)
             }
