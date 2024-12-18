@@ -39,5 +39,4 @@ class Api::V1::TweetsController < ApplicationController
   def tweet_params
     params.require(:tweet).permit(:content, :likes)
   end
-
 end
