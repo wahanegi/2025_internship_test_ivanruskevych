@@ -1,6 +1,7 @@
 import React from "react";
 import { TweetList } from "../organism";
 import { SideBarList } from "../atoms";
+import { ToastContainer, toast } from 'react-toastify';
 
 const leftSideBarItems = [
     { name: "Home", navigate: "/" },
@@ -31,6 +32,7 @@ export const Home = () => {
                     <SideBarList items={rightSideBarItems} />
                 </div>
             </div>
+            <ToastContainer />
         </div>
     );
 };

@@ -33,7 +33,7 @@ class Api::V1::TweetsController < ApplicationController
 
   def set_owned_tweet
     @tweet = current_user.tweets.find_by(id: params[:id])
-    render json: { error: "Tweet not found!" }, status: :not_found unless @tweet
+    render json: { error: "You don't have permission to delete this tweet!" }, status: :not_found unless @tweet
   end
 
   def tweet_params

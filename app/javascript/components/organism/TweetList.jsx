@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { TweetCard } from "../molecules";
 import { TweetForm } from "../organism";
 import {deleteTweetById, fetchTweets} from "../../services/tweetService";
+import {apiErrorHandler} from "../../utils";
+import {toast} from "react-toastify";
 
 export const TweetList = () => {
     const [tweets, setTweets] = useState([]);
@@ -14,8 +16,9 @@ export const TweetList = () => {
         try {
             await deleteTweetById(tweetId);
             setTweets((prevState)=> prevState.filter((tweet)=> tweet.id !== tweetId))
+            toast.success("Tweet deleted successfully", { position: "top-center" })
         } catch (err) {
-            console.error("Error deleting tweet:", err);
+            apiErrorHandler(err);
         }
     }
 
