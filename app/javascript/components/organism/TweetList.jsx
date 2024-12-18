@@ -1,30 +1,44 @@
-import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import React, { useState, useEffect } from "react";
 import { TweetCard } from "../molecules";
 import { TweetForm } from "../organism";
-
-const initialTweetsState = [
-    {
-        id: uuidv4(),
-        user: "@username",
-        content: "This is my first tweet!",
-        likes: 10,
-    },
-];
+import {deleteTweetById, fetchTweets} from "../../services/tweetService";
 
 export const TweetList = () => {
-    const [tweets, setTweets] = useState(initialTweetsState);
+    const [tweets, setTweets] = useState([]);
+
     const addTweet = (newTweet) => {
-        setTweets([newTweet, ...tweets]);
+        setTweets((prevTweets) => [newTweet, ...prevTweets]);
     };
+
+    const handleDeleteTweet = async (tweetId)=>{
+        try {
+            await deleteTweetById(tweetId);
+            setTweets((prevState)=> prevState.filter((tweet)=> tweet.id !== tweetId))
+        } catch (err) {
+            console.error("Error deleting tweet:", err);
+        }
+    }
+
+    useEffect(  () => {
+        const loadTweets = async () => {
+            try {
+                const data = await fetchTweets();
+                setTweets(data);
+            } catch (err) {
+                console.error("Error fetching tweets:", err);
+            }
+        };
+
+         loadTweets();
+    }, []);
 
     return (
         <div className={"col-6 p-3 overflow-auto scrollbar--hide"}>
             <h5 className="mb-3">Home</h5>
-            <TweetForm onTweetSubmit={addTweet} />
+            <TweetForm addTweet={addTweet}/>
             <div>
                 {tweets.map((tweet) => (
-                    <TweetCard key={tweet.id} {...tweet} />
+                    <TweetCard key={tweet.id} {...tweet} onDelete={()=> handleDeleteTweet(tweet.id)} />
                 ))}
             </div>
         </div>
