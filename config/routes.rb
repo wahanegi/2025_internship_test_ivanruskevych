@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, controllers: {
-    sessions: "users/sessions",
-    registrations: "users/registrations",
     confirmations: "users/confirmations",
-    passwords: "users/passwords"
+    passwords: "users/passwords",
+    registrations: "users/registrations",
+    sessions: "users/sessions"
   }
 
   # rout for letter_opener_web
