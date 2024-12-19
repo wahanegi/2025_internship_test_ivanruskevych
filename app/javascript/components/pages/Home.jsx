@@ -3,6 +3,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import {fetchCurrentUser} from "../../services/userService";
 import { TweetList } from "../organism";
 import { SideBarList} from "../atoms";
+import {apiErrorHandler} from "../../utils";
 
 const leftSideBarItems = [
     { name: "Home", navigate: "/" },
@@ -17,11 +18,23 @@ const rightSideBarItems = [
 
 export const Home = () => {
     const [currentUser, setCurrentUser] = useState("");
-    console.log({currentUser});
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
     useEffect(() => {
         const getUser = async () =>{
-            const userEmail = await fetchCurrentUser();
-            setCurrentUser(userEmail)
+            try {
+                const user = await fetchCurrentUser();
+
+                if (user?.email){
+                    setCurrentUser(user);
+                    setIsLoggedIn(true);
+                } else {
+                    setIsLoggedIn(false);
+                }
+            } catch (err) {
+                apiErrorHandler(err);
+                setIsLoggedIn(false);
+            }
         }
 
         getUser();
@@ -39,7 +52,7 @@ export const Home = () => {
                 </div>
 
                 {/* Main Content */}
-                <TweetList currentUser={currentUser}/>
+                <TweetList currentUser={currentUser} isLoggedIn={isLoggedIn}/>
 
                 {/* Right Sidebar */}
                 <div className="col-3 bg-white border-start p-3">

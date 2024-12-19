@@ -7,7 +7,7 @@ import {apiErrorHandler} from "../../utils";
 export const TweetForm = ({addTweet}) => {
     const [tweetContent, setTweetContent] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
-    console.log({tweetContent});
+
     const handleTweetSubmit = async (event) => {
         event.preventDefault();
 
@@ -40,7 +40,8 @@ export const TweetForm = ({addTweet}) => {
             value={tweetContent}
             onChange={handleOnChange}
             disabled={isSubmitting}
-        ></textarea>
+        >
+        </textarea>
             </div>
             <div className="d-flex justify-content-end">
                 <Button type={"submit"} className={"btn-primary"} disabled={isSubmitting}>
