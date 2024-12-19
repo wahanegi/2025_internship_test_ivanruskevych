@@ -5,11 +5,11 @@ import {deleteTweetById, fetchTweets} from "../../services/tweetService";
 import {apiErrorHandler} from "../../utils";
 import {toast} from "react-toastify";
 
-export const TweetList = () => {
+export const TweetList = ({currentUser}) => {
     const [tweets, setTweets] = useState([]);
 
     const addTweet = (newTweet) => {
-        setTweets((prevTweets) => [newTweet, ...prevTweets]);
+        setTweets((prevTweets) => [{...newTweet, user: currentUser}, ...prevTweets]);
     };
 
     const handleDeleteTweet = async (tweetId)=>{

@@ -7,7 +7,7 @@ import {apiErrorHandler} from "../../utils";
 export const TweetForm = ({addTweet}) => {
     const [tweetContent, setTweetContent] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
-
+    console.log({tweetContent});
     const handleTweetSubmit = async (event) => {
         event.preventDefault();
 
