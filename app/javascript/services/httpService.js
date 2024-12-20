@@ -11,14 +11,14 @@ const api = axios.create({
     },
 });
 
-api.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        const message = error.response?.data?.error || "Unknown error occurred";
-        toast.error(message);
-        return Promise.reject(error);
-    }
-);
+// api.interceptors.response.use(
+//     (response) => response,
+//     (error) => {
+//         const message = error.response?.data?.error || "Unknown error occurred";
+//         toast.error(message);
+//         return Promise.reject(error);
+//     }
+// );
 
 export const httpService = {
     get: api.get,

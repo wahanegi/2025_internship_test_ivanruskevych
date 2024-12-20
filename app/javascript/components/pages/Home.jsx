@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import {fetchCurrentUser} from "../../services/userService";
+import { ToastContainer } from 'react-toastify';
 import { TweetList } from "../organism";
 import { SideBarList} from "../atoms";
 import {apiErrorHandler} from "../../utils";
+import {userService} from "../../services";
 
 const leftSideBarItems = [
     { name: "Home", navigate: "/" },
@@ -23,7 +23,7 @@ export const Home = () => {
     useEffect(() => {
         const getUser = async () =>{
             try {
-                const user = await fetchCurrentUser();
+                const user = await userService.fetchCurrentUser();
 
                 if (user?.email){
                     setCurrentUser(user);

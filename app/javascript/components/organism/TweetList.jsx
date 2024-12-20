@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { TweetCard } from "../molecules";
 import { TweetForm } from "../organism";
-import {deleteTweetById, fetchTweets} from "../../services/tweetService";
 import {apiErrorHandler} from "../../utils";
 import {toast} from "react-toastify";
+import {tweetService} from "../../services";
 
 export const TweetList = ({ currentUser, isLoggedIn }) => {
     const [tweets, setTweets] = useState([]);
@@ -14,7 +14,7 @@ export const TweetList = ({ currentUser, isLoggedIn }) => {
 
     const handleDeleteTweet = async (tweetId)=>{
         try {
-            await deleteTweetById(tweetId);
+            await tweetService.deleteTweetById(tweetId);
             setTweets((prevState)=> prevState.filter((tweet)=> tweet.id !== tweetId))
             toast.success("Tweet deleted successfully", { position: "top-center" })
         } catch (err) {
@@ -25,7 +25,7 @@ export const TweetList = ({ currentUser, isLoggedIn }) => {
     useEffect(  () => {
         const loadTweets = async () => {
             try {
-                const data = await fetchTweets();
+                const data = await tweetService.fetchTweets();
                 setTweets(data);
             } catch (err) {
                 apiErrorHandler(err);
