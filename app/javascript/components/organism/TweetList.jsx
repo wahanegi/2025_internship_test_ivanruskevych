@@ -4,9 +4,12 @@ import { TweetForm } from "../organism";
 import {apiErrorHandler} from "../../utils";
 import {toast} from "react-toastify";
 import {tweetService} from "../../services";
+import {useFetchUser} from "../../hooks";
 
-export const TweetList = ({ currentUser, isLoggedIn }) => {
+export const TweetList = () => {
     const [tweets, setTweets] = useState([]);
+    const { currentUser, isLoggedIn} = useFetchUser();
+
 
     const addTweet = (newTweet) => {
         setTweets((prevTweets) => [{...newTweet, user: currentUser}, ...prevTweets]);
@@ -41,7 +44,7 @@ export const TweetList = ({ currentUser, isLoggedIn }) => {
             {isLoggedIn && <TweetForm addTweet={addTweet}/>}
             <div>
                 {tweets.map((tweet) => (
-                    <TweetCard key={tweet.id} {...tweet} isLoggedIn={isLoggedIn} onDelete={()=> handleDeleteTweet(tweet.id)} />
+                    <TweetCard key={tweet.id} {...tweet} onDelete={()=> handleDeleteTweet(tweet.id)} />
                 ))}
             </div>
         </div>

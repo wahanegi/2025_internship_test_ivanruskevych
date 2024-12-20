@@ -1,9 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import { ToastContainer } from 'react-toastify';
 import { TweetList } from "../organism";
 import { SideBarList} from "../atoms";
-import {apiErrorHandler} from "../../utils";
-import {userService} from "../../services";
+import {useFetchUser} from "../../hooks";
 
 const leftSideBarItems = [
     { name: "Home", navigate: "/" },
@@ -17,29 +16,7 @@ const rightSideBarItems = [
 ];
 
 export const Home = () => {
-    const [currentUser, setCurrentUser] = useState("");
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    useEffect(() => {
-        const getUser = async () =>{
-            try {
-                const user = await userService.fetchCurrentUser();
-
-                if (user?.email){
-                    setCurrentUser(user);
-                    setIsLoggedIn(true);
-                } else {
-                    setIsLoggedIn(false);
-                }
-            } catch (err) {
-                apiErrorHandler(err);
-                setIsLoggedIn(false);
-            }
-        }
-
-        getUser();
-    }, []);
-
+    const { userEmail } = useFetchUser();
     return (
         <div className="container-fluid vh-100 bg-light">
             <div className="row h-100">
@@ -47,12 +24,12 @@ export const Home = () => {
                 <div className="col-3 bg-white border-end p-3">
                     <SideBarList items={leftSideBarItems} />
                     <div>
-                        <a href={`mailto:${currentUser?.email}`}>{currentUser?.email}</a>
+                        <a href={`mailto:${userEmail}`}>{userEmail}</a>
                     </div>
                 </div>
 
                 {/* Main Content */}
-                <TweetList currentUser={currentUser} isLoggedIn={isLoggedIn}/>
+                <TweetList />
 
                 {/* Right Sidebar */}
                 <div className="col-3 bg-white border-start p-3">
