@@ -1,5 +1,6 @@
 import {useEffect, useMemo, useState} from "react";
 import {userService} from "../services";
+import {apiErrorHandler} from "../utils";
 
 export const useFetchUser = () => {
     const [currentUser, setCurrentUser] = useState(null);
