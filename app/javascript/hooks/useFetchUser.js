@@ -26,7 +26,6 @@ export const useFetchUser = () => {
         getUser();
     }, []);
 
-    // Мемоізація email користувача
     const userEmail = useMemo(() => currentUser?.email, [currentUser]);
 
     return { currentUser, isLoggedIn, userEmail };
