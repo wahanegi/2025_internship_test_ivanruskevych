@@ -1,6 +1,10 @@
-import { api } from "./api";
+import { httpService } from "./httpService";
 
-export const fetchCurrentUser = async ()=>{
-       const { data } = await api.get("/current_user");
+const fetchCurrentUser = async ()=>{
+       const { data } = await httpService.get("/current_user");
        return data;
+}
+
+export const userService = {
+       fetchCurrentUser,
 }

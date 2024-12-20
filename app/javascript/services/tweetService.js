@@ -1,20 +1,27 @@
-import { api } from "./api";
+import { httpService } from "./httpService";
 
-export const fetchTweets = async () => {
-        const { data } = await api.get("/tweets");
+const fetchTweets = async () => {
+        const { data } = await httpService.get("/tweets");
         return data;
 }
 
-export const fetchTweetById = async (id) => {
-    const { data } = await api.get(`/tweets/${id}`);
+const fetchTweetById = async (id) => {
+    const { data } = await httpService.get(`/tweets/${id}`);
     return data;
 };
 
-export const createTweet = async (content) => {
-    const { data } = await api.post("/tweets", { content });
+const createTweet = async (content) => {
+    const { data } = await httpService.post("/tweets", { content });
     return data;
 };
 
-export const deleteTweetById = async (id) => {
-    return await api.delete(`/tweets/${id}`);
+const deleteTweetById = async (id) => {
+    return httpService.delete(`/tweets/${id}`);
 };
+
+export const tweetService = {
+    fetchTweets,
+    fetchTweetById,
+    createTweet,
+    deleteTweetById,
+}
