@@ -7,6 +7,12 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
   rescue_from StandardError, with: :handle_standard_error
 
+  def authenticate_user!
+    unless user_signed_in?
+      render json: { error: "User not logged in" }, status: :unauthorized
+    end
+  end
+
   private
 
   def handle_record_invalid(exception)

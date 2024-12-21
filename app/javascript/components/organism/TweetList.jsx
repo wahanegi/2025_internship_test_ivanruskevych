@@ -5,11 +5,11 @@ import {deleteTweetById, fetchTweets} from "../../services/tweetService";
 import {apiErrorHandler} from "../../utils";
 import {toast} from "react-toastify";
 
-export const TweetList = () => {
+export const TweetList = ({ currentUser, isLoggedIn }) => {
     const [tweets, setTweets] = useState([]);
 
     const addTweet = (newTweet) => {
-        setTweets((prevTweets) => [newTweet, ...prevTweets]);
+        setTweets((prevTweets) => [{...newTweet, user: currentUser}, ...prevTweets]);
     };
 
     const handleDeleteTweet = async (tweetId)=>{
@@ -28,7 +28,7 @@ export const TweetList = () => {
                 const data = await fetchTweets();
                 setTweets(data);
             } catch (err) {
-                console.error("Error fetching tweets:", err);
+                apiErrorHandler(err);
             }
         };
 
@@ -38,10 +38,10 @@ export const TweetList = () => {
     return (
         <div className={"col-6 p-3 overflow-auto scrollbar--hide"}>
             <h5 className="mb-3">Home</h5>
-            <TweetForm addTweet={addTweet}/>
+            {isLoggedIn && <TweetForm addTweet={addTweet}/>}
             <div>
                 {tweets.map((tweet) => (
-                    <TweetCard key={tweet.id} {...tweet} onDelete={()=> handleDeleteTweet(tweet.id)} />
+                    <TweetCard key={tweet.id} {...tweet} isLoggedIn={isLoggedIn} onDelete={()=> handleDeleteTweet(tweet.id)} />
                 ))}
             </div>
         </div>

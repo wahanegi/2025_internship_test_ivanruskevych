@@ -40,7 +40,8 @@ export const TweetForm = ({addTweet}) => {
             value={tweetContent}
             onChange={handleOnChange}
             disabled={isSubmitting}
-        ></textarea>
+        >
+        </textarea>
             </div>
             <div className="d-flex justify-content-end">
                 <Button type={"submit"} className={"btn-primary"} disabled={isSubmitting}>

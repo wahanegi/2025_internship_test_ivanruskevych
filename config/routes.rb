@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :tweets, only: [ :index, :create, :show, :destroy ]
+      get "current_user", to: "users#current_user_info"
     end
   end
 
