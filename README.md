@@ -1,6 +1,14 @@
 # Internship Test
 
 [Link to Heroku](https://internship-project-ivanruskevy-7319bd9d1724.herokuapp.com/)
+### !!! My unfinished TODOs:
+
+1. The "Edit Account Settings" form should not require a password change if the respective fields are left empty upon form submission
+2. When navigating to routes like _"/users/sign_in"_, _"/users/sign_up"_, or other "_/users/..._" routes, a warning appears in the browser console:
+   _No routes matched location "/users/sign_in" Error Component Stack_
+3. When submitting a login, registration, or any other form, the initial request results in a _"303 See Other"_ error. Only after resubmitting the request (clicking the button again) does the request proceed correctly, and the user is redirected to the appropriate page.
+   The CSRF token is included in the request during both the initial and subsequent attempts.
+
 
 ### Elon Musk has destroyed Twitter and we need you to recreate it!
 
