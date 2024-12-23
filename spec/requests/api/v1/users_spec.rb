@@ -1,3 +1,6 @@
+# TODO: To successfully execute the tests, you need to uncomment a portion of the code
+# TODO: in the app/controllers/application_controller.rb file, lines 12-16.
+
 RSpec.describe 'Api::V1::UsersController', type: :request do
   let!(:user) { create(:user) }
 

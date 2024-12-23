@@ -7,11 +7,13 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
   rescue_from StandardError, with: :handle_standard_error
 
-  def authenticate_user!
-    unless user_signed_in?
-      render json: { error: "User not logged in" }, status: :unauthorized
-    end
-  end
+  # TODO: It is necessary to uncomment this part of the code because it is required for successfully passing the tests in `spec/requests/api/v1/users_spec.rb`. However, its presence triggers a 401 error for login and registration operations.
+  # TODO: I couldn’t properly implement an exception for this case (before_action :authenticate_user!, except [...])
+  # def authenticate_user!
+  #   unless user_signed_in?
+  #     render json: { error: "User not logged in" }, status: :unauthorized
+  #   end
+  # end
 
   private
 
