@@ -1,7 +1,35 @@
-require 'rails_helper'
+RSpec.describe 'Api::V1::UsersController', type: :request do
+  let!(:user) { create(:user) }
 
-RSpec.describe "Api::V1::Users", type: :request do
-  describe "GET /index" do
-    pending "add some examples (or delete) #{__FILE__}"
+  describe 'GET /api/v1/current_user' do
+    context 'when user is authenticated' do
+      before do
+        sign_in user, scope: :user
+        get api_v1_current_user_path
+      end
+
+      it 'returns the current user email' do
+        expect(user['email']).to eq(user.email)
+      end
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'when user is not authenticated' do
+      before do
+        get api_v1_current_user_path
+      end
+
+      it 'returns an error message' do
+        parsed_response = JSON.parse(response.body)
+        expect(parsed_response['error']).to eq('User not logged in')
+      end
+
+      it 'returns status code 401' do
+        expect(response).to have_http_status(401)
+      end
+    end
   end
 end
