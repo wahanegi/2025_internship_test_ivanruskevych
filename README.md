@@ -1,6 +1,5 @@
 # Internship Test
 
-[Link to Heroku](https://internship-project-ivanruskevy-7319bd9d1724.herokuapp.com/)
 ### !!! My unfinished TODOs:
 
 1. The "Edit Account Settings" form should not require a password change if the respective fields are left empty upon form submission
